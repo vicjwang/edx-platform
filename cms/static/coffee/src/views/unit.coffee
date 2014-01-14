@@ -1,7 +1,7 @@
 define ["jquery", "jquery.ui", "gettext", "backbone",
-        "js/views/feedback_notification", "js/views/feedback_prompt",
+        "js/views/feedback_notification", "js/views/feedback_prompt", "js/views/move_component", "js/models/xblock_info",
         "coffee/src/views/module_edit", "js/models/module_info"],
-($, ui, gettext, Backbone, NotificationView, PromptView, ModuleEditView, ModuleModel) ->
+($, ui, gettext, Backbone, NotificationView, PromptView, MoveComponentDialog, XBlockInfo, ModuleEditView, ModuleModel) ->
   class UnitEditView extends Backbone.View
     events:
       'click .new-component .new-component-type a.multiple-templates': 'showComponentTemplates'
@@ -66,6 +66,7 @@ define ["jquery", "jquery.ui", "gettext", "backbone",
         new ModuleEditView
           el: element,
           onDelete: @deleteComponent,
+          onMove: @moveComponent,
           model: model
 
     showComponentTemplates: (event) =>
@@ -91,6 +92,7 @@ define ["jquery", "jquery.ui", "gettext", "backbone",
 
       editor = new ModuleEditView(
         onDelete: @deleteComponent
+        onMove: @moveComponent,
         model: new ModuleModel()
       )
 
@@ -120,6 +122,20 @@ define ["jquery", "jquery.ui", "gettext", "backbone",
 
     saveDraft: =>
       @model.save()
+
+
+    moveComponent: (event) =>
+        event.preventDefault()
+        dialog = new MoveComponentDialog({el: $('#move-component-dialog')})
+        xBlockInfo = new XBlockInfo();
+        xBlockInfo.url = this.courseOutlineUrl;
+        xBlockInfo.fetch({
+            success: =>
+                dialog.xBlockInfo = xBlockInfo;
+                dialog.render();
+                dialog.show();
+        })
+        dialog.show()
 
     deleteComponent: (event) =>
       event.preventDefault()
