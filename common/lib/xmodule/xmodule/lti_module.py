@@ -346,23 +346,6 @@ class LTIModule(LTIFields, XModule):
             client_key=unicode(client_key),
             client_secret=unicode(client_secret)
         )
-        # get_real_user exists in LMS only.
-        # Determine specific role parameter is needed for LMS.
-        if self.system.get_real_user is not None:
-            from courseware.access import has_access
-            course = self.get_course()
-            user_id = self.get_user_id()
-            user = self.system.get_real_user(user_id)
-            if self.system.user_is_masqueraded_as_student:
-                role = u'Student'
-            elif has_access(user, course, 'instructor'):
-                role = u'Instructor'
-            elif has_access(user, course, 'staff'):
-                role = u'Administrator'
-            else:
-                role = u'Student'
-        else:
-            role = u'Student'
 
         # Must have parameters for correct signing from LTI:
         body = {
@@ -371,7 +354,7 @@ class LTIModule(LTIFields, XModule):
             u'launch_presentation_return_url': '',
             u'lti_message_type': u'basic-lti-launch-request',
             u'lti_version': 'LTI-1p0',
-            u'roles': role,
+            u'roles': self.system.user_role,
 
             # Parameters required for grading:
             u'resource_link_id': self.get_resource_link_id(),

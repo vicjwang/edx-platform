@@ -1109,7 +1109,7 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
         self.xmodule_instance = None
 
         self.get_real_user = get_real_user
-        self.user_is_masqueraded_as_student = getattr(user, 'masquerade_as_student', None)
+        self.user_role = self.get_user_role(user, course_id)
 
     def get(self, attr):
         """	provide uniform access to attributes (like etree)."""
@@ -1142,6 +1142,19 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
     def local_resource_url(self, block, uri):
         raise NotImplementedError("edX Platform doesn't currently implement XBlock resource urls")
 
+    def get_user_role(self, user, course_id):
+        from courseware.access import has_access
+        from courseware.masquerade import is_masquerading_as_student
+        from courseware.courses import get_course
+        course = get_course(course_id)
+        if is_masquerading_as_student(user):
+            return 'student'
+        elif has_access(user, course, 'instructor'):
+            return 'instructor'
+        elif has_access(user, course, 'staff'):
+            return 'staff'
+        else:
+            role = 'student'
 
 class DoNothingCache(object):
     """A duck-compatible object to use in ModuleSystem when there's no cache."""
