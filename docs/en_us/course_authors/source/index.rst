@@ -33,6 +33,7 @@ Contents
    checking_student_progress
    ora_students
    glossary
+   discussions
 
 
 
