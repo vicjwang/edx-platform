@@ -1073,11 +1073,9 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
 
         field_data - the `FieldData` to use for backing XBlock storage.
         """
-
         # Usage_store is unused, and field_data is often supplanted with an
         # explicit field_data during construct_xblock.
         super(ModuleSystem, self).__init__(id_reader=None, field_data=field_data, **kwargs)
-
         self.STATIC_URL = static_url
         self.xqueue = xqueue
         self.track_function = track_function
@@ -1109,7 +1107,9 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
         self.xmodule_instance = None
 
         self.get_real_user = get_real_user
-        self.user_role = self.get_user_role(user, course_id)
+
+        if course_id is not None:
+            self.user_role = self.get_user_role(user, course_id)
 
     def get(self, attr):
         """	provide uniform access to attributes (like etree)."""
@@ -1154,7 +1154,7 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
         elif has_access(user, course, 'staff'):
             return 'staff'
         else:
-            role = 'student'
+            return 'student'
 
 class DoNothingCache(object):
     """A duck-compatible object to use in ModuleSystem when there's no cache."""

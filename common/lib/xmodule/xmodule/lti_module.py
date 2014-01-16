@@ -332,6 +332,16 @@ class LTIModule(LTIFields, XModule):
         course = self.descriptor.runtime.modulestore.get_item(course_location)
         return course
 
+    @property
+    def role(self):
+        """Get system user role and convert it to LTI role."""
+        roles = {
+            'student': u'Student',
+            'staff': u'Administrator',
+            'instructor': u'Instructor',
+        }
+        return roles.get(self.system.user_role, u'Student')
+
     def oauth_params(self, custom_parameters, client_key, client_secret):
         """
         Signs request and returns signature and OAuth parameters.
@@ -354,7 +364,7 @@ class LTIModule(LTIFields, XModule):
             u'launch_presentation_return_url': '',
             u'lti_message_type': u'basic-lti-launch-request',
             u'lti_version': 'LTI-1p0',
-            u'roles': self.system.user_role,
+            u'roles': self.role,
 
             # Parameters required for grading:
             u'resource_link_id': self.get_resource_link_id(),
