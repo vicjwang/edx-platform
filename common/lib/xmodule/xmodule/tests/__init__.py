@@ -47,6 +47,9 @@ class TestModuleSystem(ModuleSystem):  # pylint: disable=abstract-method
     def handler_url(self, block, handler, suffix='', query='', thirdparty=False):
         return str(block.scope_ids.usage_id) + '/' + handler + '/' + suffix + '?' + query
 
+    def get_user_role(self, user, course_id):
+        return 'student'
+
 
 def get_test_system(course_id=''):
     """

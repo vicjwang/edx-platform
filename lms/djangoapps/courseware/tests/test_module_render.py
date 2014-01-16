@@ -540,6 +540,7 @@ class TestAnonymousStudentId(ModuleStoreTestCase, LoginEnrollmentTestCase):
     def setUp(self):
         self.user = UserFactory()
 
+    @patch('xmodule.x_module.ModuleSystem.get_user_role', Mock(return_value='student'))
     @patch('courseware.module_render.has_access', Mock(return_value=True))
     def _get_anonymous_id(self, course_id, xblock_class):
         location = Location('dummy_org', 'dummy_course', 'dummy_category', 'dummy_name')
