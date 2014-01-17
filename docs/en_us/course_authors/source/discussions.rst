@@ -150,7 +150,7 @@ To identify certain types of posts and make them easier for your students to fin
 Minimizing thread proliferation
 ======================================
 
-To encourage longer, threaded discussions rather than many similar, separate, posts you can use these techniques.
+To encourage longer, threaded discussions rather than many similar, separate posts, you can use these techniques.
 
 * Pin a post. 
 
