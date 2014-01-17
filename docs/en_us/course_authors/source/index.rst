@@ -34,6 +34,8 @@ Contents
    ora_students
    glossary
    discussions
+   discussion_guidance_moderators
+   discussion_guidance_students
 
 
 

@@ -82,7 +82,9 @@ The list of Discussions that displays for your course includes this new category
 Assigning roles 
 ========================================
 
-You can designate a team of people to help you run and moderate discussions. Different options for working with discussion posts are available to these different discussion-related roles:
+(? rewrite for new dashboard)
+
+In addition to the course staff, you can designate a team of people to help you run and moderate discussions. Different options for working with discussion posts are available to these different discussion-related roles:
 
 - Forum admins typically include the course author and some members of the staff.
 
@@ -90,7 +92,7 @@ You can designate a team of people to help you run and moderate discussions. Dif
 
 - Forum community TAs can be registered students.
 
-(? I'm not clear on the purposes for these different roles yet, or what UI options apply to each designation. Part of the gudance for moderators?)
+(? I'm not clear on the purposes for these different roles yet, or what UI options apply to each designation. Part of the gudance for moderators? Melanie, Jennifer Akana, Jane from Stanford, Victor)
 
 You can assign these roles to more people while your course is running, or remove a role from a user whenever necessary. 
 
@@ -109,6 +111,8 @@ To assign a role to a user name:
 #. To add a forum moderator or a forum community TA, enter the user name in the second text box and click **Add forum moderator** or **Add forum community TA**.
 
 (? are there requirements as to whether an admin must already be staff, or can it be a registered student? other requirements?) 
+
+(? why are these labels using "forum" and not "discussion"? ask Victor)
 
 .. _Running_discussions:
 
