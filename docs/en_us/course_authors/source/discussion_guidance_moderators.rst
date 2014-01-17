@@ -4,7 +4,7 @@ Guidance for discussion moderators
 
 Discussion forums are hugely important tools in running a successful MOOC; they allow for substantive community development, in addition to being excellent sources of feedback and ideas for future iterations of the course. 
 
-Moderators are the key to effectively managing these online communities. Moderators keep the discussions productive and relay important information (errata, student confusion or interest with particular topics, etc.) to the rest of the course staff. Discussions can be moderated by any of a number of members of the course team, but dedicating enough moderator time to develop and sustain a positive forum culture is the best way to cultivate a successful discussion 
+Moderators are the key to effectively managing these online communities. Moderators keep the discussions productive and relay important information (errata, student confusion or interest with particular topics, etc.) to the rest of the course staff. Discussions can be moderated by any of a number of members of the course team, but dedicating enough time to moderation is the best way to cultivate a successful discussion culture.
 
 **********************
 Responsibilities
@@ -16,123 +16,96 @@ Responsibilities
 
 * Enforce the Honor Code. 
 
-* Edit out offensive content from the forums, and remind the originators of forum etiquette and expectations. 
+* Edit out offensive content from the discussion, and remind the originators of discussion etiquette and expectations. 
 
 * Communicate problems and successes with your fellow moderators. 
 
-* Identify students whose presence on the forum has a strongly positive impact. These students can be promoted to community TA’s and publicly acknowledged. 
+* Identify students whose presence in the discussions has a strongly positive impact. These students can be promoted to community TA’s and publicly acknowledged. 
 
 * Add helpful items to the FAQ or Course Info page. 
 
 ***************************************
-Qualities of good forum moderators
+Qualities of good discussion moderators
 ***************************************
 
 * Good or great content knowledge: stellar students from previous years often make good moderators. 
 
 * Solid communication skills: the ability to organize positive, consistent, and effective communication with students, other moderators, and course staff. 
 
-* Time: keeping up-to-date with a large MOOC forum requires at least 5 hours per week for reading posts, replying to or editing posts, and communicating with the other moderators and course staff. 
+* Time: keeping up-to-date with the discussions for a large MOOC requires at least 5 hours per week for reading posts, replying to or editing posts, and communicating with the other moderators and course staff. 
 
-* Enthusiasm: this is the best predictor of forum moderator excellence! 
+* Enthusiasm: this is the best predictor of moderator excellence! 
 
 ******************************************
 Best practices for discussion moderation
 ******************************************
 
-* Always maintain a positive attitude. Keeping a positive attitude is crucial to encouraging participation in a forum community. 
+* Always maintain a positive attitude. Keeping a positive attitude is crucial to encouraging participation in the discussion community. 
 
-* Encourage discussion between students. Actively thank students who answer the 
-questions of others. 
+* Encourage discussion between students. Actively thank students who answer the questions of others. 
 
-* Use the course’s FAQ and Course Info pages as resources. Provide links to these pages in your responses when appropriate. Suggest that information be added when necessary to respond to a common question or fix confusion. 
+* Use the course’s FAQ and Course Info pages as resources. Provide links to these pages in your responses when appropriate. Suggest that information be added to these resources when necessary to respond to a common question or fix confusion. 
 
 * Always make it obvious that you have read the student’s question. When posting a response, make sure that you are on topic. Respond in the context of the thread as a 
 
-* Develop a forum persona. Try to answer your questions in your own slightly unique way 
+* Develop a discussion persona. Try to answer your questions in your own slightly unique way. 
 
 *******************************************
 Guidelines for specific types of posts
 *******************************************
 
-● Time sensitive problems 
+============================
+Time sensitive problems 
+============================
 
-● Redundant posts 
+* Try to be present on discussion threads when assignment due dates are approaching or new content is being released. The discussions tend to be extra busy at these times. 
 
-● Bugs or Errors 
+* Please alert the course staff about problems that need to be dealt with quickly, such as problems with a graded assignment. Setting up a course email address that is checked frequently is a good way to manage these alerts. 
 
-○ Try to be present on the forums when assignment due dates are approaching or 
+* Content Questions 
 
-new content is being released. The forums tend to be extra busy at these times. 
+ - Assist with content questions sensitively, but be careful not to post spoilers. Do not ask students to post their solutions!
 
-○ Please alert the course staff about problems that need to be dealt with quickly 
+ - A good guiding question can be better than an answer.
 
-(such as problems with a graded assignment). Setting up a course email that is 
+============================
+Redundant posts 
+============================
 
-checked frequently is a good way to manage these alerts. 
+* When possible, help discourage redundancy by responding to such posts with links to an earlier or higher quality thread asking the same question. 
 
-○ Content Questions 
+* When responding to a post, search for similar posts and respond to the most pertinent thread. Redirect the other posts to the thread with your response and then close the redundant threads. 
 
-■ Assist with content questions sensitively, but be careful not to post 
+========================================================
+Off topic, inappropriate, or offensive posts 
+========================================================
 
-■ A good guiding question can be better than an answer. 
+* Don’t simply delete them; instead, edit and explain why they were edited. Inappropriate posts include spoilers, solutions, and information on how to pirate educational materials. 
 
-○ When possible, help discourage redundancy by responding to such posts with 
+* Check links that students post. If offensive sites and materials are found, they need to be edited quickly. 
 
-links to an earlier or higher quality thread asking the same question. 
+============================
+Bugs or errors 
+============================
 
-○ When responding to a post, search for similar posts and respond to the most 
+* Check if there is in fact an error. 
 
-pertinent thread. Redirect the other posts to the thread with your response and 
+ - If not, suggest to the students that they check their work. 
 
-then close the redundant threads. 
+ - If so, contact course staff, and notify the thread that the error has been 
 
-○ Off topic, inappropriate, or offensive posts 
+* Use language that does not assign blame or discourage users from the platform. 
 
-○ Don’t simply delete them; instead, edit and explain why they were edited. 
+ You might say: “Thanks for letting us know about that issue. edX is working to get it fixed as quickly as possible.” 
 
-Inappropriate posts include spoilers, solutions, and information on how to pirate 
+============================
+Feature requests 
+============================
 
-educational materials. 
+* Keep an organized collection of feature requests cultivated by the course team. That list can subsequently be shared with an edX PM, who will log those requests internally. 
 
-○ Check links that students post. If offensive sites and materials are found, they 
+* Reply to the post to let the person know that their request was heard, without promising that the feature will be implemented. 
 
-need to be edited quickly. 
+ You might say: “Thanks for your suggestion. I’ve logged it for review by edX staff, who will prioritize feature requests on the development roadmap.” 
 
-○ Check if there is in fact an error. 
-
-■ If not, suggest to the students that they check their work. 
-
-■ If so, contact course staff, and notify the thread that the error has been 
-
-○ Use language that does not assign blame or discourage users from the platform. 
-
-■ You might say: “Thanks for letting us know about that issue. edX is 
-
-spoilers. Do not ask students to post their solutions! 
-
-reported. 
-
-working to get it fixed as quickly as possible.” 
-
-● Feature requests 
-
-○ Keep an organized collection of feature requests cultivated by the course team. 
-
-That list can subsequently be shared with an edX PM, who will log those 
-
-requests internally. 
-
-	 	 Page	2	
-
-○ Reply to the post to let the person know that their request was heard, without 
-
-promising that the feature will be implemented. 
-
-■ You might say: “Thanks for your suggestion. I’ve logged it for review by 
-
-edX staff, who will prioritize feature requests on the development 
-
-roadmap.” 
-
-○ Search in the forum for other similar requests, and respond to and close those as
+* Search in the forum for other similar requests, and respond to and close those as

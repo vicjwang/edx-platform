@@ -4,11 +4,11 @@ Discussions
 
 Discussions, or discussion forums, foster interaction among your students and between students and course staff. You set up the topics that you want students to discuss when you create your course, and then run and moderate discussions throughout the course to guide participation and community development. Discussions are also excellent sources of feedback and ideas for the future.
 
-- :ref:`Organizing_discussions`
+* :ref:`Organizing_discussions`
 
-- :ref:`Running_discussions`
+* :ref:`Running_discussions`
 
-- :ref:`Moderating_discussions`
+* :ref:`Moderating_discussions`
 
 .. _Organizing_discussions:
 
@@ -82,37 +82,35 @@ The list of Discussions that displays for your course includes this new category
 Assigning roles 
 ========================================
 
-(? rewrite for new dashboard)
-
 In addition to the course staff, you can designate a team of people to help you run and moderate discussions. Different options for working with discussion posts are available to these different discussion-related roles:
 
-- Forum admins typically include the course author and some members of the staff.
+* Forum admins typically include the course author and some members of the staff.
 
-- Forum moderators also are usually the course staff and can also include registered students.
+* Forum moderators also are usually the course staff and can also include registered students.
 
-- Forum community TAs can be registered students.
+* Forum community TAs can be registered students.
 
 (? I'm not clear on the purposes for these different roles yet, or what UI options apply to each designation. Part of the gudance for moderators? Melanie, Jennifer Akana, Jane from Stanford, Victor)
 
 You can assign these roles to more people while your course is running, or remove a role from a user whenever necessary. 
 
-Before you can designate your forum admins, forum moderators, and forum community TAs, you need the edX user name of the person you want to add or delete. 
+Before you can designate your forum admins, forum moderators, and forum community TAs, you need the email address of the person you want to add or delete. 
 
-- To get the user name for a staff member, on the Instructor Dashboard click **Admin** > **List course staff members**.
+* To get the email address for a staff member, on the Instructor Dashboard click **Membership** and then select Course Staff from the drop-down list.
 
-- To get the user name of a student, (? how do they get this info?).
+* To get the email address of a student, (? how do they get this info?).
 
-To assign a role to a user name:
+To assign a role:
 
-#.  On the instructor dashboard for your course, select **Forum Admin**.
+#.  On the instructor dashboard for your course, click **Membership**.
 
-#. To add a forum admin, enter the user name in the first text box and click **Add forum admin**.
+#. Select Forum Admins, Forum Moderators, or Forum Community TAs from the drop-down list.
 
-#. To add a forum moderator or a forum community TA, enter the user name in the second text box and click **Add forum moderator** or **Add forum community TA**.
+#. Under the list of users who currently have that role, enter the email address and click **Add** for the role type.
 
 (? are there requirements as to whether an admin must already be staff, or can it be a registered student? other requirements?) 
 
-(? why are these labels using "forum" and not "discussion"? ask Victor)
+(? why are these labels using "forum" and not "discussion"? asked Victor)
 
 .. _Running_discussions:
 
@@ -128,9 +126,9 @@ Seeding a discussion
 
 Before you contribute to a discussion, you can decide whether you want your post to be identified as coming from someone with one of the discussion forum roles, or without any distinguishing identifiers. Depending on the subject and purpose of your post, one or the other might be more appropriate to spark discussion and inform students.
 
-- To identify your posts with your role, log in with your course  or forum staff user name and add the post or response. Contributions that you make while logged in as staff have a colored banner with your role (admin, moderator, or community TA). (? need to determine if it is a staff identifier or a forum-related identifier or both. show image?)
+* To identify your posts with your role, log in with your course or forum staff credentials and add the post or response. Contributions that you make while logged in as staff have a colored banner with your role (admin, moderator, or community TA). (? need to determine if it is a staff identifier or a forum-related identifier or both. show image? also, why are responses and comments identified, but not the "new posts" themselves?)
  
-- To post as a student, you must set up an alternate user name with a different email address, register for the course, and post under that name. These posts do not have a banner and appear like any other student post. See :ref:`Seed a Discussion Space in Your Course`.
+* To post as a student, you must set up an alternate user account with a different email address, register for the course, and post under that account. These posts do not have a banner and appear like any other student post. See :ref:`Seed a Discussion Space in Your Course`.
  
 You can also post anonymously. Regardless of your role, you can choose to make a post anonymous. However, you may want to discourage your students from posting anonymously, and therefore choose not to use this option yourself.
 
@@ -140,13 +138,13 @@ Using conventions in discussion subjects
 
 To identify certain types of posts and make them easier for your students to find, you can define a set of standard tags to include at the beginning of the subject. Examples follow.
 
-- "[OFFICIAL]" in the subject can indicate an announcement about a change to the course.
+* "[OFFICIAL]" in the subject can indicate an announcement about a change to the course.
 
-- Information about a corrected error might have subject that begins "[ERRATA]".
+* Information about a corrected error might have subject that begins "[ERRATA]".
 
-- Use "[INTRO]" for a post in the General discussion to start a thread for individual student and staff introductions.
+* Use "[INTRO]" for a post in the General discussion to start a thread for individual student and staff introductions.
 
-- Direct students to use "[STAFF]" in the subject of each post that needs the attention of a course staff member.
+* Direct students to use "[STAFF]" in the subject of each post that needs the attention of a course staff member.
 
 ======================================
 Minimizing thread proliferation
@@ -154,13 +152,13 @@ Minimizing thread proliferation
 
 To encourage longer, threaded discussions rather than many similar, separate, posts you can use these techniques.
 
-- Pin a post. 
+* Pin a post. 
   Pinning a post makes it appear first in the discussion, so that it is more likely that students will see and respond to it. You can write your own post and then pin it, or pin a post by any author. Forum admins and moderators (?) can click the **pin** icon that displays at lower right of the post text. (image)
 
-- Close a thread. 
+* Close a thread. 
   You can respond to a redundant post by pasting in a link to the thread that you prefer students to contribute to, and then prevent further thread interaction by closing it. Forum admins and moderators (?) can click the **Close** button that displays below a post to close it. (image)
 
-- Provide guidelines.
+* Provide guidelines.
   Your *Discussion Forum Guidelines* or a post in the General discussion can provide explicit guidance about when to respond to an existing post instead of clicking **New Post**. For more information about *Discussion Forum Guidelines*, see (link).
 
 .. _Moderating_discussions:
@@ -185,7 +183,7 @@ TBD
 
 (write up boilerplate, perhaps course 2400 is a useful model?)
 
-(Appendix/template for the *Getting Started with Studio* guide?)
+For a template that you can use to develop your own guidelines for your course moderators, see :ref:`Guidance for discussion moderators`.
 
 ========================================
 Developing a positive forum culture
@@ -193,23 +191,23 @@ Developing a positive forum culture
 
 Moderators and course staff members can cultivate qualities in their own interactions with the discussions to make their influence positive and their time productive.
 
-- Encourage quality posts: thank students whose posts have a positive impact and who answer questions.
+* Encourage quality posts: thank students whose posts have a positive impact and who answer questions.
 
-- Check links, images, and videos in additions to the text that students post. Edit offensive or inappropriate posts quickly, and explain why.
+* Check links, images, and videos in additions to the text that students post. Edit offensive or inappropriate posts quickly, and explain why.
 
-- Review posts with a large number of votes and recognize "star posters" publicly and regularly.
+* Review posts with a large number of votes and recognize "star posters" publicly and regularly.
 
-- Stay on topic yourself: before responding to a post, be sure to read it completely
+* Stay on topic yourself: before responding to a post, be sure to read it completely
 
-- Maintain a positive attitude. Acknowledge problems and errors without assigning blame.
+* Maintain a positive attitude. Acknowledge problems and errors without assigning blame.
 
-- Provide timely answers. More time needs to be scheduled for answering discussion questions when deadlines for homework, quizzes, and other milestones approach.
+* Provide timely answers. More time needs to be scheduled for answering discussion questions when deadlines for homework, quizzes, and other milestones approach.
 
-- Discourage redundancy: before responding to a post search for similar posts. Make your response in the most pertinent or active thread, then use links to direct other posts to that thread.  
+* Discourage redundancy: before responding to a post search for similar posts. Make your response in the most pertinent or active thread, then use links to direct other posts to that thread.  
 
-- Publicize issues raised in the discussions: add questions and their answers to an FAQ discussion category, or announce them on the Course Info page. 
+* Publicize issues raised in the discussions: add questions and their answers to an FAQ discussion category, or announce them on the Course Info page. 
 
-(? develop and link to a "Guidance for Discussion Moderators" template, with more specific situations and detail. see Training Binder for 12_5 > Ed Services Handout.)
+For a template that you can use to develop your own guidelines for your course moderators, see :ref:`Guidance for discussion moderators`.
 
 ==================
 Editing posts 
@@ -229,7 +227,7 @@ Responding to reports of misuse
 
 (? this is a ui control available to students)
 
-(I can't figure out how this gets surfaced to the forum roles)
+(? I can't figure out how this gets surfaced to the forum roles)
 
 ==================
 Deleting posts 
