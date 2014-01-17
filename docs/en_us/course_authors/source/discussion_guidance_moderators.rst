@@ -1,3 +1,5 @@
+
+.. _discussion_guidance_moderators:
 ######################################
 Guidance for discussion moderators
 ######################################
@@ -108,4 +110,4 @@ Feature requests
 
  You might say: “Thanks for your suggestion. I’ve logged it for review by edX staff, who will prioritize feature requests on the development roadmap.” 
 
-* Search in the forum for other similar requests, and respond to and close those as
+* Search in the forum for other similar requests, and respond to and close those as well.
