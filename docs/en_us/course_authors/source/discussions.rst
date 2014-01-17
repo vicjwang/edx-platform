@@ -153,13 +153,16 @@ Minimizing thread proliferation
 To encourage longer, threaded discussions rather than many similar, separate, posts you can use these techniques.
 
 * Pin a post. 
+
   Pinning a post makes it appear first in the discussion, so that it is more likely that students will see and respond to it. You can write your own post and then pin it, or pin a post by any author. Forum admins and moderators (?) can click the **pin** icon that displays at lower right of the post text. (image)
 
 * Close a thread. 
+
   You can respond to a redundant post by pasting in a link to the thread that you prefer students to contribute to, and then prevent further thread interaction by closing it. Forum admins and moderators (?) can click the **Close** button that displays below a post to close it. (image)
 
 * Provide guidelines.
-  Your *Discussion Forum Guidelines* or a post in the General discussion can provide explicit guidance about when to respond to an existing post instead of clicking **New Post**. For more information about *Discussion Forum Guidelines*, see (link).
+
+  Your *Discussion Forum Guidelines* or a post in the General discussion can provide explicit guidance about when to respond to an existing post instead of clicking **New Post**. For a template that you can use to develop guidelines for your own course, see :ref:`Discussion Forum Guidelines`.
 
 .. _Moderating_discussions:
 
