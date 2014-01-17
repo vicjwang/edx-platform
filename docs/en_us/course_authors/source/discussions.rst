@@ -196,7 +196,7 @@ Moderators and course staff members can cultivate qualities in their own interac
 
 * Encourage quality posts: thank students whose posts have a positive impact and who answer questions.
 
-* Check links, images, and videos in additions to the text that students post. Edit offensive or inappropriate posts quickly, and explain why.
+* Check links, images, and videos in addition to the text that students post. Edit offensive or inappropriate posts quickly, and explain why.
 
 * Review posts with a large number of votes and recognize "star posters" publicly and regularly.
 

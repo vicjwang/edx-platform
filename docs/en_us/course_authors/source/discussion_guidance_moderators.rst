@@ -1,5 +1,3 @@
-
-.. _discussion_guidance_moderators:
 ######################################
 Guidance for discussion moderators
 ######################################
