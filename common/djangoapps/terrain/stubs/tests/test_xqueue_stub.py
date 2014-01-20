@@ -8,7 +8,7 @@ import json
 import requests
 import time
 import copy
-from terrain.stubs.xqueue import StubXQueueService, StubXQueueHandler
+from ..xqueue import StubXQueueService, StubXQueueHandler
 
 
 class StubXQueueServiceTest(unittest.TestCase):

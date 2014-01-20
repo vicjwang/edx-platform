@@ -61,7 +61,6 @@ class OpenResponseTest(UniqueCourseTest):
         )
 
         course_fix.add_children(
-
             XBlockFixtureDesc('chapter', 'Test Section').add_children(
                 XBlockFixtureDesc('sequential', 'Test Subsection').add_children(
 
@@ -73,9 +72,7 @@ class OpenResponseTest(UniqueCourseTest):
 
                     XBlockFixtureDesc('combinedopenended', 'Peer-Assessed',
                         data=load_data_str('ora_peer_problem.xml'), metadata={'graded': True}),
-                )
-            )
-        )
+        )))
 
         # Configure the XQueue stub's response for the text we will submit
         if self.XQUEUE_GRADE_RESPONSE is not None:
