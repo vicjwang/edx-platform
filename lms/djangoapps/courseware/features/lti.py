@@ -2,6 +2,8 @@
 import os
 from datetime import datetime
 from pytz import UTC
+from nose.tools import assert_equal
+from splinter.exceptions import ElementDoesNotExist
 
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
@@ -233,7 +235,15 @@ def check_role(_step, role):
     location = world.scenario_dict['LTI'].location.html_id()
     iframe_name = 'ltiFrame-' + location
     with world.browser.get_iframe(iframe_name) as iframe:
-        assert iframe.is_text_present('Role: ' + role)
+        assert iframe.is_element_present_by_tag('h5')
+        assert_equal(
+            'Role: ' + role,
+            world.retry_on_exception(
+                lambda: iframe.find_by_tag('h5').first.value,
+                max_attempts = 5,
+                ignored_exceptions = ElementDoesNotExist
+            )
+        )
 
 @step('I switch to (.*)$')
 def switch_view(_step, view):
