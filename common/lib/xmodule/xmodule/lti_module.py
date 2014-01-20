@@ -340,7 +340,7 @@ class LTIModule(LTIFields, XModule):
             'staff': u'Administrator',
             'instructor': u'Instructor',
         }
-        return roles.get(self.system.user_role(), u'Student')
+        return roles.get(self.system.get_user_role(), u'Student')
 
     def oauth_params(self, custom_parameters, client_key, client_secret):
         """
