@@ -22,7 +22,8 @@ BOK_CHOY_SERVERS = {
 }
 
 BOK_CHOY_STUBS = {
-    :xqueue => { :port => 8040, :log => File.join(BOK_CHOY_LOG_DIR, "bok_choy_xqueue.log") }
+    :xqueue => { :port => 8040, :log => File.join(BOK_CHOY_LOG_DIR, "bok_choy_xqueue.log") },
+    :ora => { :port => 8041, :log => File.join(BOK_CHOY_LOG_DIR, "bok_choy_ora.log") }
 }
 
 # For the time being, stubs are used by both the bok-choy and lettuce acceptance tests

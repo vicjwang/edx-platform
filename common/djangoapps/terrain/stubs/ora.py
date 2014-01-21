@@ -102,6 +102,7 @@ class StubOraHandler(StubHttpRequestHandler):
 
         # Check the path (without querystring params) against our list of handlers
         handler_name = handler_list.get(self.path_only)
+
         if handler_name is not None:
             handler = getattr(self, handler_name, None)
         else:

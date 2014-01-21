@@ -131,8 +131,13 @@ class StubHttpRequestHandler(BaseHTTPRequestHandler, object):
     def path_only(self):
         """
         Return the URL path without GET parameters.
+        Removes the trailing slash if there is one.
         """
-        return urlparse.urlparse(self.path).path
+        path = urlparse.urlparse(self.path).path
+        if path.endswith('/'):
+            return path[:-1]
+        else:
+            return path
 
     def do_PUT(self):
         """

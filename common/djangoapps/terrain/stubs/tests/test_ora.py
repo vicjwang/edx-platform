@@ -152,7 +152,7 @@ class StubOraServiceTest(unittest.TestCase):
         """
         Construt a URL to the stub ORA peer-grading service.
         """
-        return "http://127.0.0.1:{port}/peer_grading/{path}".format(
+        return "http://127.0.0.1:{port}/peer_grading/{path}/".format(
             port=self.server.port, path=path
         )
 
