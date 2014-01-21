@@ -4,7 +4,7 @@ Unit tests for stub ORA implementation.
 
 import unittest
 import requests
-from ..ora import StubOraService, StubOraHandler
+from ..ora import StubOraService, StubOraHandler, StudentState
 
 
 class StubOraServiceTest(unittest.TestCase):
@@ -39,12 +39,12 @@ class StubOraServiceTest(unittest.TestCase):
         )
         self._assert_response(response, {
             'version': 1, 'success': True,
-            'submission_id': self.server.DEFAULTS['submission_id'],
-            'submission_key': self.server.DEFAULTS['submission_key'],
-            'student_response': self.server.DEFAULTS['student_response'],
-            'prompt': self.server.DEFAULTS['prompt'],
-            'rubric': self.server.DEFAULTS['rubric'],
-            'max_score': self.server.DEFAULTS['max_score']
+            'submission_id': self.server.DUMMY_DATA['submission_id'],
+            'submission_key': self.server.DUMMY_DATA['submission_key'],
+            'student_response': self.server.DUMMY_DATA['student_response'],
+            'prompt': self.server.DUMMY_DATA['prompt'],
+            'rubric': self.server.DUMMY_DATA['rubric'],
+            'max_score': self.server.DUMMY_DATA['max_score']
         })
 
         # Grade the calibration essay
@@ -61,10 +61,10 @@ class StubOraServiceTest(unittest.TestCase):
         )
         self._assert_response(response, {
             'version': 1, 'success': True,
-            'message': self.server.DEFAULTS['message'],
-            'actual_score': self.server.DEFAULTS['actual_score'],
-            'actual_rubric': self.server.DEFAULTS['actual_rubric'],
-            'actual_feedback': self.server.DEFAULTS['actual_feedback']
+            'message': self.server.DUMMY_DATA['message'],
+            'actual_score': self.server.DUMMY_DATA['actual_score'],
+            'actual_rubric': self.server.DUMMY_DATA['actual_rubric'],
+            'actual_feedback': self.server.DUMMY_DATA['actual_feedback']
         })
 
         # Now the student should be calibrated
@@ -95,7 +95,8 @@ class StubOraServiceTest(unittest.TestCase):
         student_id = '1234'
 
         # Check initial number of submissions
-        self._assert_num_graded(student_id, 0)
+        # Should be none graded and 1 required
+        self._assert_num_graded(student_id, 0, 1)
 
         # Retrieve the next submission
         response = requests.get(
@@ -104,11 +105,11 @@ class StubOraServiceTest(unittest.TestCase):
         )
         self._assert_response(response, {
             'version': 1, 'success': True,
-            'submission_id': self.server.DEFAULTS['submission_id'],
-            'submission_key': self.server.DEFAULTS['submission_key'],
-            'prompt': self.server.DEFAULTS['prompt'],
-            'rubric': self.server.DEFAULTS['rubric'],
-            'max_score': self.server.DEFAULTS['max_score']
+            'submission_id': self.server.DUMMY_DATA['submission_id'],
+            'submission_key': self.server.DUMMY_DATA['submission_key'],
+            'prompt': self.server.DUMMY_DATA['prompt'],
+            'rubric': self.server.DUMMY_DATA['rubric'],
+            'max_score': self.server.DUMMY_DATA['max_score']
         })
 
         # Grade the submission
@@ -126,7 +127,26 @@ class StubOraServiceTest(unittest.TestCase):
         self._assert_response(response, {'version': 1, 'success': True})
 
         # Check final number of submissions
-        self._assert_num_graded(student_id, 1)
+        # Shoud be one graded  and none required
+        self._assert_num_graded(student_id, 1, 0)
+
+        # Grade the next submission the submission
+        response = requests.post(
+            self._peer_url('save_grade'),
+            data={
+                'location': 'test',
+                'grader_id': student_id,
+                'submission_id': 1,
+                'score': 2,
+                'feedback': 'Good job!',
+                'submission_key': 'key'
+            }
+        )
+        self._assert_response(response, {'version': 1, 'success': True})
+
+        # Check final number of submissions
+        # Shoud be two graded  and none required
+        self._assert_num_graded(student_id, 2, 0)
 
     def _peer_url(self, path):
         """
@@ -144,10 +164,10 @@ class StubOraServiceTest(unittest.TestCase):
         self.assertTrue(response.ok)
         self.assertEqual(response.json(), expected_json)
 
-    def _assert_num_graded(self, student_id, num_graded):
+    def _assert_num_graded(self, student_id, num_graded, num_required):
         """
-        ORA provides three distinct ways to get the submitted/graded counts.
-        Here we check all of them to ensure that the number that we've graded
+        ORA provides two distinct ways to get the submitted/graded counts.
+        Here we check both of them to ensure that the number that we've graded
         is consistently `num_graded`.
         """
 
@@ -158,22 +178,7 @@ class StubOraServiceTest(unittest.TestCase):
         # We do NOT simulate students adding more essays to the queue,
         # and essays that the current student submits are NOT graded
         # by other students.
-        num_pending = self.server.DEFAULTS['initial_num_pending'] - num_graded
-
-        # Problem list
-        response = requests.get(
-            self._peer_url('get_problem_list'),
-            params={'course_id': 'test'}
-        )
-        self._assert_response(response, {
-            'version': 1, 'success': True,
-            'problem_list': [{
-                'location': self.server.DEFAULTS['location'],
-                'problem_name': self.server.DEFAULTS['problem_name'],
-                'num_graded': num_graded,
-                'num_pending': num_pending
-            }]
-        })
+        num_pending = StudentState.INITIAL_ESSAYS_AVAILABLE - num_graded
 
         # Notifications
         response = requests.get(
@@ -182,21 +187,21 @@ class StubOraServiceTest(unittest.TestCase):
         )
         self._assert_response(response, {
             'version': 1, 'success': True,
-            'count_required': self.server.DEFAULTS['count_required'],
-            'student_sub_count': self.server.DEFAULTS['student_sub_count'],
+            'count_required': num_required,
+            'student_sub_count': self.server.DUMMY_DATA['student_sub_count'],
             'count_graded': num_graded,
             'count_available': num_pending
         })
 
         # Location data
-        response = request.get(
+        response = requests.get(
             self._peer_url('get_data_for_location'),
             params={'location': 'test location', 'student_id': student_id}
         )
         self._assert_response(response, {
             'version': 1, 'success': True,
-            'count_required': self.server.DEFAULTS['count_required'],
-            'student_sub_count': self.server.DEFAULTS['server_sub_count'],
+            'count_required': num_required,
+            'student_sub_count': self.server.DUMMY_DATA['student_sub_count'],
             'count_graded': num_graded,
             'count_available': num_pending
         })
