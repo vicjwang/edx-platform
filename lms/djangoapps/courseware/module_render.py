@@ -198,16 +198,6 @@ def get_module_for_descriptor(user, request, descriptor, field_data_cache, cours
     # allow course staff to masquerade as student
     if has_access(user, descriptor, 'staff', course_id):
         setup_masquerade(request, True)
-    else:
-        # this can be already masquaraded stuff member,
-        # and has_access(user, descriptor) can't recognize that,
-        # because correct group to access is build using locator not locations.
-        # locators are not checked in has_access(user, descriptor), so we
-        # use has_access(user, course) which does it.
-        from courseware.courses import get_course_with_access
-        course = get_course_with_access(user, course_id, 'load', depth=2)
-        if has_access(user, course, 'staff'):
-            setup_masquerade(request, True)
 
     track_function = make_track_function(request)
     xqueue_callback_url_prefix = get_xqueue_callback_url_prefix(request)
@@ -451,7 +441,7 @@ def get_module_for_descriptor_internal(user, descriptor, field_data_cache, cours
         )
 
     system.set('user_is_staff', has_access(user, descriptor.location, 'staff', course_id))
-    system.set('get_user_role', (lambda: get_user_role(user, course_id)))
+    system.set('get_user_role', lambda: get_user_role(user, course_id))
 
     # make an ErrorDescriptor -- assuming that the descriptor's system is ok
     if has_access(user, descriptor.location, 'staff', course_id):
