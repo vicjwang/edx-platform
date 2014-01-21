@@ -1018,7 +1018,7 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
             open_ended_grading_interface=None, s3_interface=None,
             cache=None, can_execute_unsafe_code=None, replace_course_urls=None,
             replace_jump_to_id_urls=None, error_descriptor_class=None, get_real_user=None,
-            field_data=None,
+            field_data=None, get_user_role=None,
             **kwargs):
         """
         Create a closure around the system environment.
@@ -1107,10 +1107,6 @@ class ModuleSystem(ConfigurableFragmentWrapper, Runtime):  # pylint: disable=abs
         self.xmodule_instance = None
 
         self.get_real_user = get_real_user
-
-        if course_id is not None:
-            from courseware.access import get_user_role
-            self.get_user_role = lambda: get_user_role(user, course_id)
 
     def get(self, attr):
         """	provide uniform access to attributes (like etree)."""
