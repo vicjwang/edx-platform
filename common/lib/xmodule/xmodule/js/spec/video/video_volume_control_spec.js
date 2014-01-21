@@ -6,6 +6,7 @@
             oldOTBD = window.onTouchBasedDevice;
             window.onTouchBasedDevice = jasmine.createSpy('onTouchBasedDevice')
                 .andReturn(null);
+        });
 
         afterEach(function () {
             $('source').remove();
@@ -15,14 +16,12 @@
         describe('constructor', function () {
             beforeEach(function () {
                 spyOn($.fn, 'slider').andCallThrough();
+                $.cookie.andReturn('75');
                 state = jasmine.initializePlayer();
             });
 
-            it('initialize currentVolume to 100%', function () {
-                // Please note that:
-                //     0%   -> 0
-                //     100% -> 1.0
-                expect(state.videoVolumeControl.currentVolume).toEqual(1);
+            it('initialize currentVolume to 75%', function () {
+                expect(state.videoVolumeControl.currentVolume).toEqual(75);
             });
 
             it('render the volume control', function () {
