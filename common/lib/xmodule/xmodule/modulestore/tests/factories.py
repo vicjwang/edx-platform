@@ -1,9 +1,6 @@
-import datetime
-
 from factory import Factory, lazy_attribute_sequence, lazy_attribute
 from factory.containers import CyclicDefinitionError
 from uuid import uuid4
-from pytz import UTC
 
 from xmodule.modulestore import Location
 from xmodule.x_module import prefer_xmodules
@@ -167,6 +164,6 @@ class ItemFactory(XModuleFactory):
 
         if location.category not in DETACHED_CATEGORIES:
             parent.children.append(location.url())
-            store.update_children(parent_location, parent.children)
+            store.update_item(parent, 'factory')
 
         return store.get_item(location)

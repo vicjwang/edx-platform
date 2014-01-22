@@ -780,8 +780,11 @@ class MongoModuleStore(ModuleStoreWriteBase):
         data: A nested dictionary of problem data
         """
         try:
+            definition_data = xblock.get_explicitly_set_fields_by_scope()
+            if len(definition_data) == 1 and 'data' in definition_data:
+                definition_data = definition_data['data']
             payload = {
-                'definition.data': xblock.data,
+                'definition.data': definition_data,
                 'metadata': own_metadata(xblock),
             }
             if xblock.has_children:
