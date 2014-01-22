@@ -148,6 +148,41 @@ class StubOraServiceTest(unittest.TestCase):
         # Shoud be two graded  and none required
         self._assert_num_graded(student_id, 2, 0)
 
+    def test_problem_list(self):
+
+        # Configure the stub to use a particular problem location
+        # The actual implementation discovers problem locations by submission
+        # to the XQueue.  This would unnecessarily complicate the stubs,
+        # so instead the tests configure the problem location at runtime.
+        self.server.config['problem_locations'] = ['test_location']
+
+        # The problem list returns dummy counts which are not updated
+        # The location we use is ignored by the LMS, and we ignore it in the stub,
+        # so we use a dummy value there too.
+        response = requests.get(
+            self._peer_url('get_problem_list'),
+            params={'course_id': 'test course'}
+        )
+
+        self._assert_response(response, {
+            'version': 1, 'success': True,
+            'problem_list': [{
+                'location': 'test_location',
+                'problem_name': self.server.DUMMY_DATA['problem_name'],
+                'num_graded': self.server.DUMMY_DATA['problem_list_num_graded'],
+                'num_pending': self.server.DUMMY_DATA['problem_list_num_pending']
+            }]
+        })
+
+    def test_default_problem_list(self):
+
+        # Without configuring the problem location, should return an empty list
+        response = requests.get(
+            self._peer_url('get_problem_list'),
+            params={'course_id': 'test course'}
+        )
+        self._assert_response(response, {'version': 1, 'success': True, 'problem_list': []})
+
     def _peer_url(self, path):
         """
         Construt a URL to the stub ORA peer-grading service.
