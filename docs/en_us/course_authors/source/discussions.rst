@@ -76,12 +76,12 @@ To create a discussion category:
 
 7. Click **Save Changes**.
 
-**Question**: When I click Save Changes, my addition is not changed. Advice on what I may be doing worng?
+  **Question**: When I click Save Changes, my addition is not changed. Advice on what I may be doing worng?
 
 When students click the **Discussion** static page for your course, the drop-down list includes this new category.
 
-.. image:: Images/NewCategory_Discussion.png
-:alt: Image of a new discussion category
+ .. image:: Images/NewCategory_Discussion.png
+  :alt: Image of a new discussion category
 
 .. _Assigning_discussion_roles:
 
@@ -136,7 +136,7 @@ You can also post anonymously. Regardless of your role, you can choose to make a
  
 * To post as a student, you must set up an alternate, test account with a different email address, go to the course URL and register, and then join the discussion. Reponses and comments do not have a banner and appear like any other student post. 
 
-Note:: Posts by discussion administrators do not include a colored "Staff" or "Community TA" banner. Only responses to posts and comments made on responses do.
+note:: Posts by discussion administrators do not include a colored "Staff" or "Community TA" banner. Only responses to posts and comments made on responses do.
 
 ==========================================
 Using conventions in discussion subjects
@@ -148,7 +148,7 @@ To identify certain types of posts and make them easier for your students to fin
 
 * Post information about corrected errors with a subject that begins "[ERRATA]".
 
-* In the General discussion category, add an "[INTRO]" post io initiate a thread for student and staff introductions.
+* In the General discussion category, add an "[INTRO]" post to initiate a thread for student and staff introductions.
 
 * Direct students to use "[STAFF]" in the subject of each post that needs the attention of a course staff member.
 
@@ -162,8 +162,8 @@ To encourage longer, threaded discussions rather than many similar, separate pos
 * Pin a post. 
   Pinning a post makes it appear first in the discussion, so that it is more likely that students will see and respond to it. Otherwise, each post is listed in reverse chronological order. You can write your own post and then pin it, or pin a post by any author. Click the **pin** icon that displays at lower right of the post text.
 
-  .. image:: Images/Pin_Discussion.png
-  :alt: Image of the pin icon for discussion posts
+    .. image:: Images/Pin_Discussion.png
+     :alt: Image of the pin icon for discussion posts
 
 * Endorse a response.
   Endorsing a response indicates that it provides value to the discussion, such as a correct answer to a question. Click the **check mark** button that displays at upper right of the response.
@@ -172,7 +172,7 @@ To encourage longer, threaded discussions rather than many similar, separate pos
   You can respond to a redundant post or response by pasting in a link to the thread that you prefer students to contribute to, and then prevent further thread interaction by closing the entire post or a specific response. Click the **Close** button that displays below the post or response to close it. 
 
 * Provide post/response/comment guidelines.
-  Your *Discussion Forum Guidelines* or a post in the General discussion can provide guidance about when to create a new thread, respond to an existing post, or comment on a response. 
+  Your :ref:`Discussion Forum Guidelines` or a post in the General discussion can provide guidance about when to create a new thread, respond to an existing post, or comment on a response. 
 
 
 .. _Moderating_discussions:

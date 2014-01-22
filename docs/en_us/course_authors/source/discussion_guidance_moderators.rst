@@ -6,6 +6,8 @@ Discussion forums are hugely important tools in running a successful MOOC; they 
 
 Moderators are the key to effectively managing these online communities. Moderators keep the discussions productive and relay important information (errata, student confusion or interest with particular topics, etc.) to the rest of the course staff. Discussions can be moderated by any of a number of members of the course team, but dedicating enough time to moderation is the best way to cultivate a successful discussion culture.
 
+Please feel free to use some or all of the information in this chapter to guide the contributions of your discussion moderators.
+
 **********************
 Responsibilities
 **********************
@@ -20,7 +22,7 @@ Responsibilities
 
 * Communicate problems and successes with your fellow moderators. 
 
-* Identify students whose presence in the discussions has a strongly positive impact. These students can be promoted to community TA’s and publicly acknowledged. 
+* Identify students whose presence in the discussions has a strongly positive impact. These students can be promoted to community TA role and publicly acknowledged. 
 
 * Add helpful items to the FAQ or Course Info page. 
 
@@ -53,6 +55,8 @@ Best practices for discussion moderation
 *******************************************
 Guidelines for specific types of posts
 *******************************************
+
+Certain types of posts require more attention from the moderators than others, or may need to be handled in a particular way.
 
 ============================
 Time sensitive problems 
@@ -92,7 +96,7 @@ Bugs or errors
 
  - If not, suggest to the students that they check their work. 
 
- - If so, contact course staff, and notify the thread that the error has been 
+ - If so, contact course staff, and notify the thread that the error has been reported.
 
 * Use language that does not assign blame or discourage users from the platform. 
 

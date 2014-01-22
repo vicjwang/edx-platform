@@ -35,7 +35,7 @@ Contents
    glossary
    discussions
    discussion_guidance_moderators
-   discussion_guidance_students
+..   discussion_guidance_students
 
 
 
