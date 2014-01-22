@@ -3,6 +3,13 @@ if Backbone?
 
     events:
       "click .discussion-submit-post": "submitComment"
+      "click .add-response-btn": "scrollToAddResponse"
+
+    scrollToAddResponse: (event) =>
+      event.preventDefault()
+      form = $('form.discussion-reply-new')
+      $('html, body').scrollTop(form.offset().top)
+      form.find('.wmd-panel textarea').focus()
 
     $: (selector) ->
       @$el.find(selector)

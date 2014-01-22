@@ -5,7 +5,15 @@
 <script type="text/template" id="thread-template">
     <article class="discussion-article" data-id="${'<%- id %>'}">
         <div class="thread-content-wrapper"></div>
-
+        <ol class="add-response">
+            <a class="add-response-btn" role="button" data-tooltip="${_('Add A Response') | h}" href="javascript:void(0);">
+                <li>
+                    <i class="icon icon-reply"></i>
+                    &nbsp;
+                    <span>${_('Add A Response')}</span>
+                </li>
+            </a>
+        </ol>
         <ol class="responses">
             <li class="loading"><div class="loading-animation"><span class="sr">${_('Loading content')}</span></div></li>
         </ol>
