@@ -4,6 +4,7 @@ Unit tests for stub ORA implementation.
 
 import unittest
 import requests
+import json
 from ..ora import StubOraService, StubOraHandler, StudentState
 
 
@@ -152,9 +153,15 @@ class StubOraServiceTest(unittest.TestCase):
 
         # Configure the stub to use a particular problem location
         # The actual implementation discovers problem locations by submission
-        # to the XQueue.  This would unnecessarily complicate the stubs,
-        # so instead the tests configure the problem location at runtime.
-        self.server.config['problem_locations'] = ['test_location']
+        # to the XQueue; we do something similar by having the XQueue stub
+        # register submitted locations with the ORA stub.
+        grader_payload = json.dumps({
+            'location': 'test_location',
+            'problem_id': 'test_name'
+        })
+        url = "http://127.0.0.1:{port}/test/register_submission".format(port=self.server.port)
+        response = requests.post(url, data={'grader_payload': grader_payload})
+        self.assertTrue(response.ok)
 
         # The problem list returns dummy counts which are not updated
         # The location we use is ignored by the LMS, and we ignore it in the stub,
@@ -168,15 +175,15 @@ class StubOraServiceTest(unittest.TestCase):
             'version': 1, 'success': True,
             'problem_list': [{
                 'location': 'test_location',
-                'problem_name': self.server.DUMMY_DATA['problem_name'],
+                'problem_name': 'test_name',
                 'num_graded': self.server.DUMMY_DATA['problem_list_num_graded'],
                 'num_pending': self.server.DUMMY_DATA['problem_list_num_pending']
             }]
         })
 
-    def test_default_problem_list(self):
+    def test_empty_problem_list(self):
 
-        # Without configuring the problem location, should return an empty list
+        # Without configuring any problem location, should return an empty list
         response = requests.get(
             self._peer_url('get_problem_list'),
             params={'course_id': 'test course'}

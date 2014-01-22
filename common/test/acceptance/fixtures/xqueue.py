@@ -4,11 +4,14 @@ Fixture to configure XQueue response.
 
 import requests
 import json
-from bok_choy.web_app_fixture import WebAppFixture, WebAppFixtureError
 from . import XQUEUE_STUB_URL
 
 
-class XQueueResponseFixture(WebAppFixture):
+class XQueueResponseFixtureError(Exception):
+    pass
+
+
+class XQueueResponseFixture(object):
     """
     Configure the XQueue stub's response to submissions.
     """
@@ -37,6 +40,6 @@ class XQueueResponseFixture(WebAppFixture):
         response = requests.put(url, data=payload)
 
         if not response.ok:
-            raise WebFixtureError(
+            raise XQueueResponseFixtureError(
                 "Could not configure XQueue stub for queue '{1}'.  Status code: {2}".format(
                     self._queue_name, self._response_dict))

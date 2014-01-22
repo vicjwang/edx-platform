@@ -73,6 +73,10 @@ class StubOraHandler(StubHttpRequestHandler):
     POST_URL_HANDLERS = {
         '/peer_grading/save_grade': '_save_grade',
         '/peer_grading/save_calibration_essay': '_save_calibration_essay',
+
+        # Test-specific, used by the XQueue stub to register a new submission,
+        # with we use to discover valid problem locations in the LMS
+        '/test/register_submission': '_register_submission'
     }
 
     def do_GET(self):
@@ -352,6 +356,48 @@ class StubOraHandler(StubHttpRequestHandler):
                 'actual_feedback': self.server.DUMMY_DATA['actual_feedback']
             })
 
+    @require_params('POST', 'grader_payload')
+    def _register_submission(self):
+        """
+        Test-specific method to register a new submission.
+        This is used by `get_problem_list` to return valid locations in the LMS courseware.
+        In tests, this end-point gets called by the XQueue stub when it receives new submissions,
+        much like ORA discovers locations when students submit peer-graded problems to the XQueue.
+
+        Method: POST
+
+        Params:
+            - grader_payload (JSON dict)
+
+        Result: Empty
+
+        The only keys we use in `grader_payload` are 'location' and 'problem_id'.
+        """
+        # Since this is a required param, we know it is in the post dict
+        try:
+            payload = json.loads(self.post_dict['grader_payload'])
+
+        except ValueError:
+            self.log_message(
+                "Could not decode grader payload as JSON: '{0}'".format(
+                    self.post_dict['grader_payload']))
+            self.send_response(400)
+
+        else:
+
+            location = payload.get('location')
+            name = payload.get('problem_id')
+
+            if location is not None and name is not None:
+                self.server.register_problem(location, name)
+                self.send_response(200)
+            else:
+                self.log_message(
+                    "Grader payload should contain 'location' and 'problem_id' keys: {0}".format(payload)
+                )
+                self.send_response(400)
+
+
     def _student(self, method, key='student_id'):
         """
         Return the `StudentState` instance for the student ID given
@@ -429,6 +475,11 @@ class StubOraService(StubHttpService):
         # Create a dict to map student ID's to their state
         self._students = dict()
 
+        # By default, no problems are available for peer grading
+        # You can add to this list using the `register_location` HTTP end-point
+        # This is a dict mapping problem locations to problem names
+        self.problems = dict()
+
     def student_state(self, student_id):
         """
         Return the `StudentState` (named tuple) for the student
@@ -444,9 +495,18 @@ class StubOraService(StubHttpService):
 
     @property
     def problem_list(self):
+        """
+        Return a list of problems available for peer grading.
+        """
         return [{
-            'location': location, 'problem_name': self.DUMMY_DATA['problem_name'],
+            'location': location, 'problem_name': name,
             'num_graded': self.DUMMY_DATA['problem_list_num_graded'],
             'num_pending': self.DUMMY_DATA['problem_list_num_pending']
-            } for location in self.config.get('problem_locations', list())
+            } for location, name in self.problems.items()
         ]
+
+    def register_problem(self, location, name):
+        """
+        Register a new problem with `location` and `name` for peer grading.
+        """
+        self.problems[location] = name
