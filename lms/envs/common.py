@@ -1146,3 +1146,6 @@ GRADES_DOWNLOAD = {
     'BUCKET': 'edx-grades',
     'ROOT_PATH': '/tmp/edx-s3/grades',
 }
+
+###################### MAX ALLOWED FEEDBACK ######################
+MAX_ALLOWED_FEEDBACK_LENGTH = 5000

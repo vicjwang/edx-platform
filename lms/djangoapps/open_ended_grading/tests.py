@@ -236,7 +236,7 @@ class TestStaffGradingService(ModuleStoreTestCase, LoginEnrollmentTestCase):
 
         feedback_fragment = "This is very long feedback."
         data["feedback"] = feedback_fragment * (
-            (staff_grading_service.MAX_ALLOWED_FEEDBACK_LENGTH / len(feedback_fragment) + 1)
+            (settings.MAX_ALLOWED_FEEDBACK_LENGTH / len(feedback_fragment) + 1)
         )
 
         response = check_for_post_code(self, 200, url, data)
@@ -247,7 +247,7 @@ class TestStaffGradingService(ModuleStoreTestCase, LoginEnrollmentTestCase):
         self.assertEquals(
             content['error'],
             "Feedback is too long, Max length is {0} characters.".format(
-                staff_grading_service.MAX_ALLOWED_FEEDBACK_LENGTH
+                settings.MAX_ALLOWED_FEEDBACK_LENGTH
             )
         )
 
@@ -423,7 +423,7 @@ class TestPeerGradingService(ModuleStoreTestCase, LoginEnrollmentTestCase):
 
         feedback_fragment = "This is very long feedback."
         data["feedback"] = feedback_fragment * (
-            (staff_grading_service.MAX_ALLOWED_FEEDBACK_LENGTH / len(feedback_fragment) + 1)
+            (settings.MAX_ALLOWED_FEEDBACK_LENGTH / len(feedback_fragment) + 1)
         )
 
         response_dict = self.peer_module.save_grade(data)
@@ -433,7 +433,7 @@ class TestPeerGradingService(ModuleStoreTestCase, LoginEnrollmentTestCase):
         self.assertEquals(
             response_dict['error'],
             "Feedback is too long, Max length is {0} characters.".format(
-                staff_grading_service.MAX_ALLOWED_FEEDBACK_LENGTH
+                settings.MAX_ALLOWED_FEEDBACK_LENGTH
             )
         )
 

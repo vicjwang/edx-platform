@@ -30,7 +30,6 @@ STAFF_ERROR_MESSAGE = _(
         tech_support_email=settings.TECH_SUPPORT_EMAIL
     )
 )
-MAX_ALLOWED_FEEDBACK_LENGTH = 5000
 
 
 class MockStaffGradingService(object):
@@ -409,9 +408,9 @@ def save_grade(request, course_id):
 
 def check_feedback_length(data):
     feedback = data.get("feedback")
-    if feedback and len(feedback) > MAX_ALLOWED_FEEDBACK_LENGTH:
+    if feedback and len(feedback) > settings.MAX_ALLOWED_FEEDBACK_LENGTH:
         return False, "Feedback is too long, Max length is {0} characters.".format(
-            MAX_ALLOWED_FEEDBACK_LENGTH
+            settings.MAX_ALLOWED_FEEDBACK_LENGTH
         )
     else:
         return True, ""

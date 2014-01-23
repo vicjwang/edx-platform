@@ -2,6 +2,7 @@ import json
 import logging
 
 from datetime import datetime
+from django.conf import settings
 from lxml import etree
 from pkg_resources import resource_string
 from xblock.fields import Dict, String, Scope, Boolean, Float, Reference
@@ -23,7 +24,6 @@ log = logging.getLogger(__name__)
 
 
 EXTERNAL_GRADER_NO_CONTACT_ERROR = "Failed to contact external graders.  Please notify course staff."
-MAX_ALLOWED_FEEDBACK_LENGTH = 5000
 
 
 class PeerGradingFields(object):
@@ -645,9 +645,9 @@ class PeerGradingModule(PeerGradingFields, XModule):
 
     def _check_feedback_length(self, data):
         feedback = data.get("feedback")
-        if feedback and len(feedback) > MAX_ALLOWED_FEEDBACK_LENGTH:
+        if feedback and len(feedback) > settings.MAX_ALLOWED_FEEDBACK_LENGTH:
             return False, "Feedback is too long, Max length is {0} characters.".format(
-                MAX_ALLOWED_FEEDBACK_LENGTH
+                settings.MAX_ALLOWED_FEEDBACK_LENGTH
             )
         else:
             return True, ""
