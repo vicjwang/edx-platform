@@ -161,7 +161,7 @@ class TestMidCourseReverifyView(TestCase):
         except ObjectDoesNotExist:
             self.fail('No verification object generated')
 
-    patch.dict(settings.FEATURES, {'AUTOMATIC_VERIFY_STUDENT_IDENTITY_FOR_TESTING': True})
+    @patch.dict(settings.FEATURES, {'AUTOMATIC_VERIFY_STUDENT_IDENTITY_FOR_TESTING': True})
     def test_midcourse_reverify_post_failure_expired_window(self):
         window = MidcourseReverificationWindowFactory(
             course_id=self.course_id,
