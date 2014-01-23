@@ -108,6 +108,7 @@ class StubOraServiceTest(unittest.TestCase):
             'version': 1, 'success': True,
             'submission_id': self.server.DUMMY_DATA['submission_id'],
             'submission_key': self.server.DUMMY_DATA['submission_key'],
+            'student_response': self.server.DUMMY_DATA['student_response'],
             'prompt': self.server.DUMMY_DATA['prompt'],
             'rubric': self.server.DUMMY_DATA['rubric'],
             'max_score': self.server.DUMMY_DATA['max_score']
@@ -177,7 +178,8 @@ class StubOraServiceTest(unittest.TestCase):
                 'location': 'test_location',
                 'problem_name': 'test_name',
                 'num_graded': self.server.DUMMY_DATA['problem_list_num_graded'],
-                'num_pending': self.server.DUMMY_DATA['problem_list_num_pending']
+                'num_pending': self.server.DUMMY_DATA['problem_list_num_pending'],
+                'num_required': self.server.DUMMY_DATA['problem_list_num_required']
             }]
         })
 

@@ -255,6 +255,7 @@ class StubOraHandler(StubHttpRequestHandler):
             - success (bool)
             - submission_id (str)
             - submission_key (str)
+            - student_response (str)
             - prompt (str, HTML)
             - rubric (str, XML)
             - max_score (int)
@@ -262,6 +263,7 @@ class StubOraHandler(StubHttpRequestHandler):
         self._success_response({
             'submission_id': self.server.DUMMY_DATA['submission_id'],
             'submission_key': self.server.DUMMY_DATA['submission_key'],
+            'student_response': self.server.DUMMY_DATA['student_response'],
             'prompt': self.server.DUMMY_DATA['prompt'],
             'rubric': self.server.DUMMY_DATA['rubric'],
             'max_score': self.server.DUMMY_DATA['max_score']
@@ -286,6 +288,7 @@ class StubOraHandler(StubHttpRequestHandler):
             - problem_name (str)
             - num_graded (int)
             - num_pending (int)
+            - num_required (int)
         """
         self._success_response({'problem_list': self.server.problem_list})
 
@@ -464,6 +467,7 @@ class StubOraService(StubHttpService):
         'problem_name': 'test problem',
         'problem_list_num_graded': 1,
         'problem_list_num_pending': 1,
+        'problem_list_num_required': 0,
     }
 
     def __init__(self, *args, **kwargs):
@@ -501,7 +505,8 @@ class StubOraService(StubHttpService):
         return [{
             'location': location, 'problem_name': name,
             'num_graded': self.DUMMY_DATA['problem_list_num_graded'],
-            'num_pending': self.DUMMY_DATA['problem_list_num_pending']
+            'num_pending': self.DUMMY_DATA['problem_list_num_pending'],
+            'num_required': self.DUMMY_DATA['problem_list_num_required']
             } for location, name in self.problems.items()
         ]
 

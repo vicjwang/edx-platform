@@ -88,10 +88,6 @@ class GradingService(object):
         Returns the result of operation().  Does not catch exceptions.
         """
         response = operation()
-
-        # DEBUG
-        log.error("DEBUG Response content: " + response.content)
-
         resp_json = response.json()
         if (resp_json
                 and resp_json.get('success') is False

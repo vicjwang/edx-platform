@@ -65,7 +65,7 @@ class OpenResponseTest(UniqueCourseTest):
 
         # Configure the XQueue stub's response for the text we will submit
         # The submission text is unique so we can associate each response with a particular test case.
-        self.submission = "Test submission " + self.unique_id
+        self.submission = "Test submission " + self.unique_id[0:4]
         if self.XQUEUE_GRADE_RESPONSE is not None:
             XQueueResponseFixture(self.submission, self.XQUEUE_GRADE_RESPONSE).install()
 
