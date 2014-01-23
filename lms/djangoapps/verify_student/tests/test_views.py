@@ -11,6 +11,8 @@ verify_student/start?course_id=MITx/6.002x/2013_Spring # create
 """
 import urllib
 from mock import patch, Mock, ANY
+import pytz
+from datetime import timedelta, datetime
 
 from django.test import TestCase
 from django.test.utils import override_settings
@@ -149,14 +151,28 @@ class TestMidCourseReverifyView(TestCase):
 
     @patch.dict(settings.FEATURES, {'AUTOMATIC_VERIFY_STUDENT_IDENTITY_FOR_TESTING': True})
     def test_midcourse_reverify_post_success(self):
+        window = MidcourseReverificationWindowFactory(course_id=self.course_id)
         url = reverse('verify_student_midcourse_reverify', kwargs={'course_id': self.course_id})
         response = self.client.post(url, {'face_image': ','})
         self.assertEquals(response.status_code, 302)
         try:
-            verification_attempt = SoftwareSecurePhotoVerification.objects.get(user=self.user)
+            verification_attempt = SoftwareSecurePhotoVerification.objects.get(user=self.user, window=window)
             self.assertIsNotNone(verification_attempt)
         except ObjectDoesNotExist:
             self.fail('No verification object generated')
+
+    patch.dict(settings.FEATURES, {'AUTOMATIC_VERIFY_STUDENT_IDENTITY_FOR_TESTING': True})
+    def test_midcourse_reverify_post_failure_expired_window(self):
+        window = MidcourseReverificationWindowFactory(
+            course_id=self.course_id,
+            start_date=datetime.now(pytz.UTC) - timedelta(days=100),
+            end_date=datetime.now(pytz.UTC) - timedelta(days=50),
+        )
+        url = reverse('verify_student_midcourse_reverify', kwargs={'course_id': self.course_id})
+        response = self.client.post(url, {'face_image': ','})
+        self.assertEquals(response.status_code, 302)
+        with self.assertRaises(ObjectDoesNotExist):
+            SoftwareSecurePhotoVerification.objects.get(user=self.user, window=window)
 
     # TODO make this test more detailed
     @patch('verify_student.views.render_to_response', render_mock)
