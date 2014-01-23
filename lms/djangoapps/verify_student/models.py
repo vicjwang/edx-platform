@@ -71,17 +71,9 @@ class MidcourseReverificationWindow(models.Model):
         Returns a boolean, True if the course is currently asking for reverification, else False.
         """
         now = datetime.now(pytz.UTC)
-
-        try:
-            cls.objects.get(
-                course_id=course_id,
-                start_date__lte=now,
-                end_date__gte=now,
-            )
-        except(ObjectDoesNotExist):
-            return False
-
-        return True
+        if cls.get_window(course_id, now):
+            return True
+        return False
 
     @classmethod
     def get_window(cls, course_id, date):

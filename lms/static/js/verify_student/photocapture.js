@@ -47,12 +47,10 @@ var submitMidcourseReverificationPhotos = function() {
 var submitToPaymentProcessing = function() {
   var contribution_input = $("input[name='contribution']:checked")
   var contribution = 0;
-  if(contribution_input.attr('id') == 'contribution-other')
-  {
+  if(contribution_input.attr('id') == 'contribution-other') {
       contribution = $("input[name='contribution-other-amt']").val();
   }
-  else
-  {
+  else {
       contribution = contribution_input.val();
   }
   var course_id = $("input[name='course_id']").val();
