@@ -35,6 +35,15 @@ var submitReverificationPhotos = function() {
 
 }
 
+var submitMidcourseReverificationPhotos = function() {
+  $('<input>').attr({
+      type: 'hidden',
+      name: 'face_image',
+      value: $("#face_image")[0].src,
+  }).appendTo("#reverify_form");
+  $("#reverify_form").submit();
+}
+
 var submitToPaymentProcessing = function() {
   var contribution_input = $("input[name='contribution']:checked")
   var contribution = 0;
@@ -276,11 +285,16 @@ $(document).ready(function() {
       submitReverificationPhotos();
   });
 
+  $("#midcourse_reverify_button").click(function() {
+      submitMidcourseReverificationPhotos();
+  });
+
   // prevent browsers from keeping this button checked
   $("#confirm_pics_good").prop("checked", false)
   $("#confirm_pics_good").change(function() {
       $("#pay_button").toggleClass('disabled');
       $("#reverify_button").toggleClass('disabled');
+      $("#midcourse_reverify_button").toggleClass('disabled');
   });
 
 
