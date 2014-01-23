@@ -40,7 +40,6 @@ class TestNavigation(ModuleStoreTestCase, LoginEnrollmentTestCase):
             self.create_account(username, email, password)
             self.activate_user(email)
 
-
     @override_settings(SESSION_INACTIVITY_TIMEOUT_IN_SECONDS=1)
     def test_inactive_session_timeout(self):
         """

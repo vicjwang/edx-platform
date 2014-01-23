@@ -21,7 +21,7 @@ class SessionInactivityTimeout:
         """
         Standard entry point for processing requests in Django
         """
-        if not hasattr(request, "user") or not request.user.is_authenticated() :
+        if not hasattr(request, "user") or not request.user.is_authenticated():
             #Can't log out if not logged in
             return
 
@@ -31,9 +31,9 @@ class SessionInactivityTimeout:
             try:
                 time_since_last_activity = datetime.now() - request.session['last_touch']
                 if time_since_last_activity > timedelta(0, timeout_in_seconds, 0):
-                  auth.logout(request)
-                  del request.session['last_touch']
-                  return
+                    auth.logout(request)
+                    del request.session['last_touch']
+                    return
             except KeyError:
                 pass
 
