@@ -328,6 +328,8 @@ class CapaMixin(CapaFields):
 
         if total > 0:
             if self.weight is not None:
+                if self.weight == 0:
+                    return None
                 # scale score and total by weight/total:
                 score = score * self.weight / total
                 total = self.weight
