@@ -864,8 +864,15 @@ class NumericalResponse(LoncapaResponse):
             self.inclusion = (
                 True if answer.startswith('[') else False, True if answer.endswith(']') else False
             )
-            self.answer_range = [contextualize_text(x, context) for x in answer[1:-1].split(',')]
-            self.correct_answer = answer[0] + self.answer_range[0] + ', ' + self.answer_range[1] + answer[-1]
+            try:
+                self.answer_range = [contextualize_text(x, context) for x in answer[1:-1].split(',')]
+                self.correct_answer = answer[0] + self.answer_range[0] + ', ' + self.answer_range[1] + answer[-1]
+            except Exception:
+                log.debug("Content error--answer '%s' is not a valid range tolerance answer", answer)
+                _ = self.capa_system.i18n.ugettext
+                raise StudentInputError(
+                    _("There was a problem with the staff answer to this problem.")
+                )
         else:
             self.correct_answer = contextualize_text(answer, context)
 
@@ -939,21 +946,18 @@ class NumericalResponse(LoncapaResponse):
         except Exception:
             raise general_exception
         # End `evaluator` block -- we figured out the student's answer!
-
         if self.range_tolerance:
             if isinstance(student_float, complex):
-                raise StudentInputError(u"You may not use complex numbers in range tolerance problems")
+                raise StudentInputError(_(u"You may not use complex numbers in range tolerance problems"))
             if isnan(student_float):
                 raise general_exception
             boundaries = []
             for inclusion, answer in zip(self.inclusion, self.answer_range):
                 boundary = self.get_staff_ans(answer)
                 if boundary.imag != 0:
-                    log.debug(
-                        "Content error--answer '%s' is complex and can't be used in range tolerance problem",
-                        answer
-                    )
-                    raise StudentInputError("There was a problem with the staff answer to this problem")
+                    raise StudentInputError(_("There was a problem with the staff answer to this problem: complex boundary."))
+                if isnan(boundary):
+                    raise StudentInputError(_("There was a problem with the staff answer to this problem: empty boundary."))
                 boundaries.append(boundary.real)
                 if compare_with_tolerance(
                         student_float,

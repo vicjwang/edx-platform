@@ -1074,13 +1074,14 @@ class NumericalResponseTest(ResponseTest):
             problem = self.build_problem(answer=given_answer)
             self.assert_multiple_grade(problem, correct_responses, incorrect_responses)
 
+    def test_grade_range_tolerance_exceptions(self):
+        # no complex number in range tolerance staff answer
         problem = self.build_problem(answer='[1j, 5]')
-        correct_responses = ["4", "4.0", "4.00"]
-        incorrect_responses = ["", "3.9", "4.1", "0"]
         input_dict = {'1_2_1': '3'}
         with self.assertRaises(StudentInputError):
             problem.grade_answers(input_dict)
 
+        # no complex numbers in student ansers to range tolerance problems
         problem = self.build_problem(answer='(1, 5)')
         input_dict = {'1_2_1': '1*J'}
         with self.assertRaises(StudentInputError):
@@ -1089,6 +1090,16 @@ class NumericalResponseTest(ResponseTest):
         # test isnan variable
         problem = self.build_problem(answer='(1, 5)')
         input_dict = {'1_2_1': ''}
+        with self.assertRaises(StudentInputError):
+            problem.grade_answers(input_dict)
+
+        # test invalid range tolerance answer
+        with self.assertRaises(StudentInputError):
+            problem = self.build_problem(answer='(1 5)')
+
+        # test empty boundaries
+        problem = self.build_problem(answer='(1, ]')
+        input_dict = {'1_2_1': '3'}
         with self.assertRaises(StudentInputError):
             problem.grade_answers(input_dict)
 
