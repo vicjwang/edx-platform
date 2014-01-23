@@ -238,20 +238,20 @@ function () {
     // Returns a string describing the level of volume.
     function getVolumeDescription(vol) {
         if (vol === 0) {
-            return gettext('muted');
+            return gettext('Muted');
         } else if (vol <= 20) {
-            return gettext('very low');
+            return gettext('Very low');
         } else if (vol <= 40) {
-            return gettext('low');
+            return gettext('Low');
         } else if (vol <= 60) {
-            return gettext('average');
+            return gettext('Average');
         } else if (vol <= 80) {
-            return gettext('loud');
+            return gettext('Loud');
         } else if (vol <= 99) {
-            return gettext('very loud');
+            return gettext('Very loud');
         }
 
-        return gettext('maximum');
+        return gettext('Maximum');
     }
 
 });

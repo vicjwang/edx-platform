@@ -265,7 +265,7 @@ function () {
             minutes = Math.floor(seconds / 60),
             hours = Math.floor(minutes / 60),
             pad = function (value, word) {
-                return value + ' ' + gettext(word + (value != 1 ? 's' : ''));
+                return value + ' ' + gettext(word + (value !== 1 ? 's' : ''));
             };
 
         seconds = seconds % 60;

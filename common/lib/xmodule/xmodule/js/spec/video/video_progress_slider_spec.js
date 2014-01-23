@@ -287,7 +287,7 @@
                 },
                 getTimeDescription;
 
-            initialize();
+            state = jasmine.initializePlayer();
 
             getTimeDescription = state.videoProgressSlider.getTimeDescription;
 

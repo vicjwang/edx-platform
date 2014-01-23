@@ -44,13 +44,13 @@
             it('add ARIA attributes to slider handle', function () {
                 var sliderHandle = $('div.volume-slider>a.ui-slider-handle'),
                     arr = [
-                        'muted', 'very low', 'low', 'average', 'loud',
-                        'very loud', 'maximum'
+                        'Muted', 'Very low', 'Low', 'Average', 'Loud',
+                        'Very loud', 'Maximum'
                     ];
 
                 expect(sliderHandle).toHaveAttrs({
                     'role': 'slider',
-                    'title': 'volume',
+                    'title': 'Volume',
                     'aria-disabled': 'false',
                     'aria-valuemin': '0',
                     'aria-valuemax': '100'
@@ -85,33 +85,33 @@
 
         describe('onChange', function () {
             var initialData = [{
-                range: 'muted',
+                range: 'Muted',
                 value: 0,
-                expectation: 'muted'
+                expectation: 'Muted'
             }, {
                 range: 'in ]0,20]',
                 value: 10,
-                expectation: 'very low'
+                expectation: 'Very low'
             }, {
                 range: 'in ]20,40]',
                 value: 30,
-                expectation: 'low'
+                expectation: 'Low'
             }, {
                 range: 'in ]40,60]',
                 value: 50,
-                expectation: 'average'
+                expectation: 'Average'
             }, {
                 range: 'in ]60,80]',
                 value: 70,
-                expectation: 'loud'
+                expectation: 'Loud'
             }, {
                 range: 'in ]80,100[',
                 value: 90,
-                expectation: 'very loud'
+                expectation: 'Very loud'
             }, {
-                range: 'maximum',
+                range: 'Maximum',
                 value: 100,
-                expectation: 'maximum'
+                expectation: 'Maximum'
             }];
 
             beforeEach(function () {
