@@ -25,14 +25,13 @@ from xmodule.x_module import XModule
 from xmodule.editing_module import TabsEditingDescriptor
 from xmodule.raw_module import EmptyDataRawDescriptor
 from xmodule.xml_module import is_pointer_tag, name_to_pathname, deserialize_field
-from xblock.fields import Scope, String, Boolean, List, Integer, ScopeIds
+from xblock.fields import Scope, String, Boolean, List, Integer, ScopeIds, Dict
 from xmodule.fields import RelativeTime
 
 from xmodule.modulestore.inheritance import InheritanceKeyValueStore
 from xblock.runtime import KvsFieldData
 
 log = logging.getLogger(__name__)
-
 
 class VideoFields(object):
     """Fields for `VideoModule` and `VideoDescriptor`."""
@@ -116,6 +115,14 @@ class VideoFields(object):
         default=""
     )
 
+    # Data format: {de': 'german_translation.srt', 'ua': 'ukrainian_translation.srt'}
+    transcripts = Dict(
+        help="Additional translations for transcripts",
+        display_name="Additional translations for transcripts",
+        scope=Scope.settings,
+        default={}
+        )
+
 
 class VideoModule(VideoFields, XModule):
     """
@@ -186,7 +193,8 @@ class VideoModule(VideoFields, XModule):
             # TODO: Later on the value 1500 should be taken from some global
             # configuration setting field.
             'yt_test_timeout': 1500,
-            'yt_test_url': settings.YOUTUBE_TEST_URL
+            'yt_test_url': settings.YOUTUBE_TEST_URL,
+            'transcripts': json.dumps(self.transcripts)
         })
 
 
@@ -282,6 +290,14 @@ class VideoDescriptor(VideoFields, TabsEditingDescriptor, EmptyDataRawDescriptor
             ele = etree.Element('track')
             ele.set('src', self.track)
             xml.append(ele)
+
+        # sorting for easy testing of resulting xml
+        for language in sorted(self.transcripts.keys()):
+            ele = etree.Element('transcript')
+            ele.set('language', language)
+            ele.set('src', self.transcripts[language])
+            xml.append(ele)
+
         return xml
 
     def get_context(self):
@@ -369,7 +385,6 @@ class VideoDescriptor(VideoFields, TabsEditingDescriptor, EmptyDataRawDescriptor
             'from': 'start_time',
             'to': 'end_time'
         }
-
         sources = xml.findall('source')
         if sources:
             field_data['html5_sources'] = [ele.get('src') for ele in sources]
@@ -378,6 +393,10 @@ class VideoDescriptor(VideoFields, TabsEditingDescriptor, EmptyDataRawDescriptor
         track = xml.find('track')
         if track is not None:
             field_data['track'] = track.get('src')
+
+        transcripts = xml.findall('transcript')
+        if transcripts:
+            field_data['transcripts'] = {tr.get('language'): tr.get('src') for tr in transcripts}
 
         for attr, value in xml.items():
             if attr in compat_keys:
@@ -404,6 +423,8 @@ class VideoDescriptor(VideoFields, TabsEditingDescriptor, EmptyDataRawDescriptor
                 field_data[attr] = value
 
         return field_data
+
+
 
 
 def _create_youtube_string(module):

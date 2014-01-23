@@ -55,7 +55,8 @@ class TestVideo(BaseTestXmodule):
             'youtube_streams': _create_youtube_string(self.item_module),
             'autoplay': settings.FEATURES.get('AUTOPLAY_VIDEOS', False),
             'yt_test_timeout': 1500,
-            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/'
+            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/',
+            'transcripts' : '{"ua": "ukrainian_translation.srt"}',
         }
 
         self.assertEqual(
@@ -109,7 +110,8 @@ class TestVideoNonYouTube(TestVideo):
             'youtube_streams': '1.00:OEoXaMPEzfM',
             'autoplay': settings.FEATURES.get('AUTOPLAY_VIDEOS', True),
             'yt_test_timeout': 1500,
-            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/'
+            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/',
+            'transcripts': '{}'
         }
 
         self.assertEqual(

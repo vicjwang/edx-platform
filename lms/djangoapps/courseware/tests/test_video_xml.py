@@ -36,6 +36,7 @@ SOURCE_XML = """
         <source src="example.mp4"/>
         <source src="example.webm"/>
         <source src="example.ogv"/>
+        <transcript language="ua" src="ukrainian_translation.srt" />
     </video>
 """
 
@@ -90,9 +91,10 @@ class VideoModuleUnitTest(unittest.TestCase):
             'track': '',
             'autoplay': settings.FEATURES.get('AUTOPLAY_VIDEOS', False),
             'yt_test_timeout': 1500,
-            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/'
+            'yt_test_url': 'https://gdata.youtube.com/feeds/api/videos/',
+            'transcripts': '{"ua": "ukrainian_translation.srt"}'
         }
-
+        import ipdb; ipdb.set_trace()
         self.assertEqual(
             module.render('student_view').content,
             module.runtime.render_template('video.html', expected_context)
